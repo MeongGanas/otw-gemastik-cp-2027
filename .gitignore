@@ -1,0 +1,23 @@
+# Competitive Programming Helper (cph)
+.cph/
+
+# Editor / IDE
+.vscode/
+
+# Compiled Binaries & Objects (C++)
+*.exe
+*.o
+*.obj
+*.out
+*.pdb
+*.ilk
+
+# Local test / I/O files
+in*.txt
+out*.txt
+input.txt
+output.txt
+
+# OS-specific
+Thumbs.db
+.DS_Store
