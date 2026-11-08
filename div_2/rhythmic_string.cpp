@@ -39,7 +39,18 @@ void solve() {
         cin >> a[i];
     }
 
-    dbg(a);
+    int minimum_count = l;
+    for (int i = 0; i < l; i++){
+        int curr_count = 0;
+        for (int j = 0; j < l; j++){
+            if (a[j] % a[i] != 0){
+                curr_count++;
+            }
+        }
+        minimum_count = min(curr_count, minimum_count);
+    }
+
+    cout << minimum_count << endl;
 }
 
 int main() {
