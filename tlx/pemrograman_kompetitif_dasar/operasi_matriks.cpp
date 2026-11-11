@@ -32,18 +32,73 @@ void _print(T t, V... v) { __print(t); if (sizeof...(v)) cerr << ", "; _print(v.
 // ================= DEBUG TEMPLATE END ===================
 
 void solve() {
-    
+    int m, n, x; cin >> m >> n >> x;
+
+    vector<vector<int>> res(m, vector<int>(n));
+
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < n; j++){
+            cin >> res[i][j];
+        }
+    }
+
+    for (int k = 0; k < x; k++){
+        string operation; cin >> operation;
+
+        if (operation == "90" or operation == "180" or operation == "270"){
+            int rotations = stoi(operation) / 90;
+
+            for (int l = 0; l < rotations; l++){
+                vector<vector<int>> temp;
+                
+                if (res.size() == res[0].size()){
+                    for (int i = 0; i < res.size(); i++){
+                        vector<int> temp2;
+                        for (int j = 0; j < res[0].size(); j++){
+                            int curr = res[j][i];
+                            temp2.insert(temp2.begin(), curr);
+                        }
+                        temp.push_back(temp2);
+                    }
+                } else {
+                     for (int i = 0; i < res[0].size(); i++){
+                        vector<int> temp2;
+                        for (int j = 0; j < res.size(); j++){
+                            int curr = res[j][i];
+                            temp2.insert(temp2.begin(), curr);
+                        }
+                        temp.push_back(temp2);
+                    }
+                }
+
+                res = temp;
+            }
+        } else {
+            if (operation == "_"){
+                reverse(res.begin(), res.end());
+            } else {
+                for (int i = 0; i < res.size(); i++){
+                    reverse(res[i].begin(), res[i].end());
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < res.size(); i++){
+        for (int j = 0; j < res[0].size(); j++){
+            cout << res[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return;
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t = 1;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
 
     return 0;
 }
