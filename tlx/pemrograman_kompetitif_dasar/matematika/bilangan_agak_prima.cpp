@@ -31,44 +31,29 @@ void _print(T t, V... v) { __print(t); if (sizeof...(v)) cerr << ", "; _print(v.
 #endif
 // ================= DEBUG TEMPLATE END ===================
 
-// belum selesai
 void solve() {
-    int r, c; cin >> r >> c;
+    int t; cin >> t;
 
-    vector<string> board;
+    // int n = sqrt(t);   
 
-    int last_index_runtuh = 0;
-    for(int i = 0; i < r; i++){
-        string form; cin >> form;
+    // set<int> factor;
+    // for(int i = 1; i <= n; i++){
+    //     if (t % i == 0){
+    //         factor.insert(i);
+    //         factor.insert(t/i);
+    //     }
+    // }
+    // cout << ((factor.size() <= 4) ? "YA\n" : "BUKAN\n");
 
-        int count_1 = 0;
-        for (char s: form){
-            if (s == '1') count_1++;
-        }
-
-        if (count_1 == c) {
-            last_index_runtuh = max(i, last_index_runtuh);
-            board.insert(board.begin(), string(c, '0'));
-        } else {
-            board.push_back(form);
-        }
-    }
-
-    cout << last_index_runtuh << endl;
-
-    for(int i = r-1; i >= 0; i--){
-        for (int j = 0; j < c; j++){
-            int current = board[i][j];
-
-            if (current == '0'){
-                dbg(i, j);
-            }
+    // solusi AI
+    int count = 0;
+    for (int i = 1; i * i <= t; i++){
+        if (t % i == 0){
+            if (i * i == t) count++;
+            else count += 2;
         }
     }
-
-    for(int i = 0; i < r; i++){
-        cout << board[i] << endl;
-    }
+    cout << ((count <= 4) ? "YA\n" : "BUKAN\n");
 }
 
 int main() {
@@ -76,21 +61,10 @@ int main() {
     cin.tie(NULL);
 
     int t = 1;
+    cin >> t;
     while (t--) {
         solve();
     }
 
     return 0;
 }
-
-// 000000
-// 000000
-// 011100
-// 110011
-// 111111
-// 111000
-// 111111
-// 111111
-// 111001
-// 001100
-// 111011
